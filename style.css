@@ -1,0 +1,301 @@
+/* ==== ESTILO GENERAL BMW ==== */
+body {
+  background: radial-gradient(circle at top, #1C69D4, #000);
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: #f5f5f5;
+  text-align: center;
+  margin: 0;
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* ==== CONTENEDOR PRINCIPAL ==== */
+.container {
+  max-width: 600px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 0 20px rgba(28, 105, 212, 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+  scroll-behavior: smooth;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+  backdrop-filter: blur(8px);
+}
+
+/* ==== SCROLL PERSONALIZADO ==== */
+.container::-webkit-scrollbar {
+  width: 8px;
+}
+.container::-webkit-scrollbar-thumb {
+  background-color: #1C69D4;
+  border-radius: 10px;
+}
+.container::-webkit-scrollbar-thumb:hover {
+  background-color: #0e47a1;
+}
+
+/* ==== GIF CENTRADO ==== */
+.gif-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gif-container img {
+  width: 250px;
+  height: 250px;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: 0 0 15px rgba(28, 105, 212, 0.5);
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* ==== TEXTO ==== */
+p {
+  margin: 5px 0;
+  line-height: 1.6;
+  font-size: 1.05em;
+  text-align: justify;
+  color: #d1d1d1;
+}
+
+h1 {
+  color: #1C69D4;
+  font-size: 2.2em;
+  text-shadow: 0 0 12px rgba(28, 105, 212, 0.8);
+}
+
+/* ==== BOTONES ==== */
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  margin-top: 25px;
+  position: relative;
+  width: 100%;
+}
+
+.btn a {
+  display: inline-block;
+  background: linear-gradient(90deg, #1C69D4, #0046a3);
+  color: #fff;
+  text-decoration: none;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-size: 1.2em;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(28, 105, 212, 0.5);
+}
+
+.btn a:hover {
+  background: linear-gradient(90deg, #0046a3, #1C69D4);
+  transform: scale(1.08);
+  box-shadow: 0 0 20px rgba(28, 105, 212, 0.9);
+}
+
+/* ==== ANIMACIÓN DE ENTRADA ==== */
+.fade-in {
+  animation: fadeInPage 1.8s ease forwards;
+}
+
+@keyframes fadeInPage {
+  from { opacity: 0; transform: translateY(25px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ==== TE AMO ANIMADO ==== */
+.te-amo {
+  color: #1C69D4; /* 💙 Azul BMW */
+  font-weight: bold;
+  font-size: 1.5em;
+  text-shadow: 0 0 15px #1C69D4;
+  transition: all 0.4s ease;
+  animation: latido 3s ease-in-out infinite;
+  display: inline-block;
+}
+
+.te-amo:hover {
+  color: #ff4da6; /* 💗 Rosa al pasar el ratón */
+  text-shadow: 0 0 20px #ff4da6;
+  transform: scale(1.1);
+}
+
+/* Animación de latido */
+@keyframes latido {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+
+/* ==== FRASE AZUL ==== */
+.frase-azul {
+  color: #1C69D4;
+  font-weight: 600;
+  font-size: 1.1em;
+  display: inline-block;
+  animation: aparecer 1.8s ease-in-out;
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==== RESPONSIVO ==== */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+    font-size: 1.1em;
+    max-height: 85vh;
+  }
+
+  .gif-container img {
+    width: 200px;
+    height: 200px;
+  }
+
+  h1 {
+    font-size: 1.8em;
+  }
+
+  .btn a {
+    padding: 10px 20px;
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 12px;
+    font-size: 1em;
+    max-height: 95vh;
+  }
+
+  .gif-container img {
+    width: 160px;
+    height: 160px;
+  }
+
+  h1 {
+    font-size: 1.5em;
+  }
+
+  .btn a {
+    padding: 14px 25px;
+    font-size: 1.05em;
+  }
+}
+
+/* ==== PÁGINA NO2 SIN SCROLL ==== */
+body.no2, html.no2 {
+  overflow: hidden;
+  height: 100vh;
+}
+
+body.no2 .container {
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+/* === ESTILO BMW === */
+body {
+  background: radial-gradient(circle at top, #0d1b2a 0%, #000 100%);
+  color: #e0e0e0;
+}
+
+.container {
+  background: rgba(10, 10, 10, 0.85);
+  border: 1px solid #1f3b63;
+  box-shadow: 0 0 25px rgba(70, 130, 180, 0.4);
+}
+
+h1, .te-amo, .frase-azul {
+  color: #4da6ff;
+  text-shadow: 0 0 15px #0077ff;
+}
+
+.btn a {
+  background-color: #0077ff;
+  box-shadow: 0 0 15px rgba(0, 119, 255, 0.5);
+}
+
+.btn a:hover {
+  background-color: #0d6efd;
+  box-shadow: 0 0 25px rgba(0, 119, 255, 0.9);
+}
+
+/* ==== LOGO BMW ==== */
+.bmw-logo {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.bmw-logo img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 10px #0077ff);
+  transition: transform 0.6s ease;
+}
+
+@media (max-width: 480px) {
+  .bmw-logo img {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+
+/* Gira solo al pasar el cursor */
+.bmw-logo img:hover {
+  animation: spinLogo 4s linear infinite;
+  transform: scale(1.1);
+}
+
+/* Animación de giro */
+@keyframes spinLogo {
+  from { transform: rotate(0deg) scale(1.1); }
+  to { transform: rotate(360deg) scale(1.1); }
+}
+
+/* ==== FONDO ANIMADO BMW ==== */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 20% 20%, #0040ff55 0%, transparent 30%),
+              radial-gradient(circle at 80% 80%, #00b3ff33 0%, transparent 40%),
+              radial-gradient(circle at 50% 50%, #0077ff22 0%, transparent 45%);
+  animation: moverLuces 10s linear infinite;
+  z-index: -1;
+  filter: blur(60px);
+}
+
+@keyframes moverLuces {
+  0% { transform: translate(-10%, -10%) scale(1); }
+  50% { transform: translate(10%, 10%) scale(1.2); }
+  100% { transform: translate(-10%, -10%) scale(1); }
+}

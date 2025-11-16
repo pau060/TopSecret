@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es" class="no2">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intento</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="no2">
+
+  <div class="bmw-logo">
+    <img src="img/osi.png" alt="Logo BMW">
+  </div>
+
+  <div class="container fade-in">
+    <div class="gif-container">
+      <img src="img/enfado.gif" alt="BMW haciendo burnout">
+    </div>
+
+    <p>Venga, inténtalo ahora.</p>
+
+    <div class="btn">
+      <a href="si.html">SÍ</a>
+      <a id="no-btn">NO</a>
+    </div>
+  </div>
+
+  <!-- ⭐ EFECTO DE ESTRELLAS BMW -->
+  <canvas id="bmvStars"></canvas>
+
+  <script>
+    // ===== ESTRELLAS BMW =====
+    const canvas = document.getElementById("bmvStars");
+    const ctx = canvas.getContext("2d");
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    const colors = [
+        "rgba(0, 122, 255, 0.8)",
+        "rgba(255, 255, 255, 0.8)",
+        "rgba(80, 180, 255, 0.8)"
+    ];
+
+    let particles = [];
+    const particleCount = 120;
+
+    for (let i = 0; i < particleCount; i++) {
+        particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            size: Math.random() * 2 + 1,
+            speed: Math.random() * 0.3 + 0.1,
+            color: colors[Math.floor(Math.random() * colors.length)]
+        });
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fillStyle = p.color;
+            ctx.fill();
+
+            p.y -= p.speed;
+            if (p.y < 0) {
+                p.y = canvas.height;
+                p.x = Math.random() * canvas.width;
+            }
+        });
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    canvas.style.position = "fixed";
+    canvas.style.top = "0";
+    canvas.style.left = "0";
+    canvas.style.width = "100%";
+    canvas.style.height = "100%";
+    canvas.style.zIndex = "-1"; 
+    canvas.style.pointerEvents = "none";
+
+    // ===== BOTÓN NO ESCURRIDIZO DENTRO DEL CONTENEDOR =====
+    const noBtn = document.getElementById("no-btn");
+    const btnContainer = document.querySelector(".btn"); // Contenedor de los botones
+    btnContainer.style.position = "relative";
+
+    noBtn.addEventListener("mouseenter", () => {
+        const maxX = btnContainer.offsetWidth - noBtn.offsetWidth;
+        const maxY = btnContainer.offsetHeight - noBtn.offsetHeight;
+        const randomX = Math.random() * maxX;
+        const randomY = Math.random() * maxY;
+
+        noBtn.style.position = "absolute";
+        noBtn.style.left = randomX + "px";
+        noBtn.style.top = randomY + "px";
+    });
+  </script>
+
+</body>
+</html>
+

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>No me amas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="bmw-logo">
+    <img src="img/miosito.png" alt="Logo BMW">
+  </div>
+
+  <div class="container fade-in">
+    <div class="gif-container">
+      <img src="img/SSes6l.gif" alt="BMW girando">
+    </div>
+
+    <p>¿No me amas?:(</p>
+
+    <div class="btn">
+      <a onclick="playClick()" href="index.html">VOLVER</a>
+      <a onclick="playClick()" href="no2.html">NO</a>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <!-- ⭐ EFECTO DE ESTRELLAS BMW -->
+<canvas id="bmvStars"></canvas>
+
+<script>
+const canvas = document.getElementById("bmvStars");
+const ctx = canvas.getContext("2d");
+
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+window.addEventListener("resize", resizeCanvas);
+resizeCanvas();
+
+// Colores BMW
+const colors = [
+    "rgba(0, 122, 255, 0.8)",   // Azul BMW
+    "rgba(255, 255, 255, 0.8)", // Blanco
+    "rgba(80, 180, 255, 0.8)"   // Celeste BMW
+];
+
+// Crear partículas
+let particles = [];
+const particleCount = 120; // Puedes subirlo si quieres más estrellas
+
+for (let i = 0; i < particleCount; i++) {
+    particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 2 + 1,
+        speed: Math.random() * 0.3 + 0.1,
+        color: colors[Math.floor(Math.random() * colors.length)]
+    });
+}
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+
+        // Movimiento suave hacia arriba
+        p.y -= p.speed;
+
+        // Si sale por arriba, reinicia abajo
+        if (p.y < 0) {
+            p.y = canvas.height;
+            p.x = Math.random() * canvas.width;
+        }
+    });
+
+    requestAnimationFrame(animate);
+}
+
+animate();
+
+// Canvas al fondo
+canvas.style.position = "fixed";
+canvas.style.top = "0";
+canvas.style.left = "0";
+canvas.style.width = "100%";
+canvas.style.height = "100%";
+canvas.style.zIndex = "-1"; 
+canvas.style.pointerEvents = "none";
+</script>
+
+</body>
+</html>

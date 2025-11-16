@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Te amo, Héctor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ 
+  <div class="bmw-logo">
+    <img src="img/osi.png" alt="Logo BMW">
+  </div>
+
+  <div class="container fade-in">
+
+    <p><span class="frase-azul">Quería escribirte esto para que sepas cuánto te amo,</span> aunque podría seguir escribiendo miles de cosas más.</p>
+
+    <p>Me alegra muchísimo estar contigo, porque, aunque no nos hayamos visto en persona, tengo muchos sentimientos fuertes hacia ti. Me encantas.</p>
+    
+    <p>Me encanta mirar los atardeceres y las estrellas, y me gustaría verlos juntos, pero seguramente acabaría mirándote a ti, porque me encantan tus ojos, esa sonrisa, esos labios, toda esa carita que tienes. Serías la estrella que vería día y noche. Me sale ser así de cursi. </p> 
+    
+    <p>Me encanta decirte cosas bonitas, porque te mereces saberlo y te mereces el mundo entero. Ojalá pudiera darte mis ojos para que veas lo bonito que eres por dentro y por fuera. Eres increíble, Héctor. Sé siempre así, tan dulce, tan cursi, tan cariñoso.</p> 
+    
+    <p>Nunca me imaginé que alguien me querría de la manera en que tú lo haces. Quiero que te sientas amado y respetado, porque quiero pasar una vida contigo, y volvería a elegirte una y otra vez.</p> 
+    
+    <p>Me encanta escuchar tu voz y tu risa, me quedo embobada escuchándote. Y cuando enciendes la cámara, me dan ganas de llorar, porque pienso en cómo he podido encontrarte y cómo puedo tener a una persona tan increíble como tú.</p> 
+    
+    <p>Me haces la persona más feliz del mundo. Te amo con toda mi alma. Estoy loca por ti. No puedo pasar un día sin ti ni de coña, porque cada día me enamoro más y más.</p> 
+    
+    <p>Tengo muchísimas ganas de estar contigo, ganas de verte, abrazarte, mimarte, besarte… con ganas de todo, mientras esté contigo.</p> <p>Aunque estemos lejos, quiero que construyamos algo bonito, crear miles de momentos contigo y que, cuando seamos mayores, digamos “al final lo conseguimos”. Así recordaremos todos esos momentos felices.</p>
+
+    <p class="highlight te-amo">Te amo</p>
+
+    <div class="btn">
+      <a onclick="playClick()" href="index.html">Volver</a>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+  <!-- ⭐ EFECTO DE ESTRELLAS BMW -->
+<canvas id="bmvStars"></canvas>
+
+<script>
+const canvas = document.getElementById("bmvStars");
+const ctx = canvas.getContext("2d");
+
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+window.addEventListener("resize", resizeCanvas);
+resizeCanvas();
+
+// Colores BMW
+const colors = [
+    "rgba(0, 122, 255, 0.8)",   // Azul BMW
+    "rgba(255, 255, 255, 0.8)", // Blanco
+    "rgba(80, 180, 255, 0.8)"   // Celeste BMW
+];
+
+// Crear partículas
+let particles = [];
+const particleCount = 120; // Puedes subirlo si quieres más estrellas
+
+for (let i = 0; i < particleCount; i++) {
+    particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 2 + 1,
+        speed: Math.random() * 0.3 + 0.1,
+        color: colors[Math.floor(Math.random() * colors.length)]
+    });
+}
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+
+        // Movimiento suave hacia arriba
+        p.y -= p.speed;
+
+        // Si sale por arriba, reinicia abajo
+        if (p.y < 0) {
+            p.y = canvas.height;
+            p.x = Math.random() * canvas.width;
+        }
+    });
+
+    requestAnimationFrame(animate);
+}
+
+animate();
+
+// Canvas al fondo
+canvas.style.position = "fixed";
+canvas.style.top = "0";
+canvas.style.left = "0";
+canvas.style.width = "100%";
+canvas.style.height = "100%";
+canvas.style.zIndex = "-1"; 
+canvas.style.pointerEvents = "none";
+</script>
+<script>
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("service-worker.js")
+    .then(() => console.log("Service Worker registrado ✨"))
+    .catch(err => console.log("Error del SW:", err));
+}
+</script>
+
+</body>
+</html>
+
